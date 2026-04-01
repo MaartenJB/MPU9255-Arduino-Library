@@ -105,8 +105,8 @@ enum interrupts
 
 class MPU9255
 {
-public:
 
+public:
   //acceleration raw data
   int16_t ax=0;//X axis
   int16_t ay=0;//Y axis
@@ -167,7 +167,11 @@ public:
   double my_sensitivity;//Y axis
   double mz_sensitivity;//Z axis
 
-  private:
+  // mpu settings
+  int acc_factory_offset(axis selected_axis);
+  int gyro_factory_offset(axis selected_axis);
+
+private:
   void requestBytes(uint8_t address, uint8_t subAddress, uint8_t bytes);//request data
   uint8_t read(uint8_t address, uint8_t subAddress);//read one byte from selected register
   void readArray(uint8_t *output, char size);//read an array of bytes
